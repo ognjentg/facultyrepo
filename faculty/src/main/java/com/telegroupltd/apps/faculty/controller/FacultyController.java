@@ -4,7 +4,9 @@ import com.telegroupltd.apps.faculty.controller.genericController.GenericControl
 import com.telegroupltd.apps.faculty.model.Faculty;
 import com.telegroupltd.apps.faculty.repository.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,6 +22,11 @@ public class FacultyController extends GenericController<Faculty, Integer> {
     public FacultyController(FacultyRepository facultyRepository) {
         super(facultyRepository);
         this.facultyRepository = facultyRepository;
+    }
+
+    @RequestMapping(value = "/returnSumOfSalary/{facultyId}", method = RequestMethod.GET)
+    public Double returnSumOfSalary(@PathVariable Integer facultyId) {
+        return facultyRepository.returnSumOfSalary(facultyId);
     }
 
 //    @GetMapping
